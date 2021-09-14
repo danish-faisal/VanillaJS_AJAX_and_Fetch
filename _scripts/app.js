@@ -1,6 +1,8 @@
 'use strict';
 
-const url = 'https://us-street.api.smartystreets.com/street-address?key=107882225040805386&street=86%20Frontage%20Road&city=Belmont&state=MA&candidates=10';
+const smartyUrl = 'https://us-street.api.smartystreets.com/street-address?key=107882225040805386&street=86%20Frontage%20Road&city=Belmont&state=MA&candidates=10';
+
+const parksUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=ca&api_key=F7vTdzHdHLdBxI5n00ZP3TFCVmehOdaIDlSq0aHR';
 
 const updateUISuccess = function (data) {
     console.log(data);
@@ -27,4 +29,5 @@ const createRequest = function (url) {
     httpRequest.send();
 }
 
-createRequest(url);
+// createRequest(url);
+createRequest(parksUrl);
