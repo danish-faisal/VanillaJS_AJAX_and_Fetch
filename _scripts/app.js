@@ -42,3 +42,7 @@ const checkCompletion = function () {
 
 // createRequest(smartyUrl);
 createRequest(parksUrl);
+
+addressField.addEventListener('blur', checkCompletion);
+cityField.addEventListener('blur', checkCompletion);
+stateField.addEventListener('blur', checkCompletion);
