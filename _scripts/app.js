@@ -7,6 +7,8 @@ const addressField = document.querySelector('#address');
 const cityField = document.querySelector('#city');
 const stateField = document.querySelector('#state');
 const zipField = document.querySelector('#zip');
+const parkThumb = document.querySelector('#specials h2 img');
+const parkSection = document.querySelector('#specials');
 
 const smartyUpdateUISuccess = function (data) {
     const parsedData = JSON.parse(data);
@@ -19,6 +21,8 @@ const smartyUpdateUISuccess = function (data) {
 
 const parksUpdateUISuccess = function (data) {
     console.log(data);
+    parkThumb.src = "https://www.nps.gov/common/commonspot/templates/assetsCT/images/branding/logo.png";
+    parkSection.classList.remove('hidden');
 }
 
 const smartyUpdateUIError = function (error) {
