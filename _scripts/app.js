@@ -2,6 +2,12 @@
 
 // const smartyUrl = 'https://us-street.api.smartystreets.com/street-address?key=107882225040805386&street=86%20Frontage%20Road&city=Belmont&state=MA&candidates=10';
 const smartyUrl = 'https://us-street.api.smartystreets.com/street-address?key=107882225040805386&candidates=10';
+const smartyInit = {
+    headers: {
+        'Content-type': 'application/json',
+        Host: 'us-street.api.smartystreets.com'
+    }
+};
 const parksUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=ca&api_key=F7vTdzHdHLdBxI5n00ZP3TFCVmehOdaIDlSq0aHR';
 const addressField = document.querySelector('#address');
 const cityField = document.querySelector('#city');
@@ -12,8 +18,8 @@ const parkSection = document.querySelector('#specials');
 const parkAnchor = document.querySelector('#specials h2 a');
 const parkDescription = document.querySelector('#specials p');
 
-const smartyUpdateUISuccess = function (data) {
-    const parsedData = JSON.parse(data);
+const smartyUpdateUISuccess = function (parsedData) {
+    // const parsedData = JSON.parse(data);
     console.log(parsedData);
     const zip = parsedData[0].components.zipcode;
     const plus4 = parsedData[0].components.plus4_code;
@@ -65,17 +71,17 @@ const handleErrors = function (response) {
     return response.json();
 }
 
-const createRequest = function (url, succeed, fail) {
-    fetch(url)
+const createRequest = function (url, succeed, fail, init) {
+    fetch(url, init)
         .then((response) => handleErrors(response))
-        .then((data) => parksUpdateUISuccess(data))
+        .then((data) => succeed(data))
         .catch((error) => fail(error));
 }
 
 const checkCompletion = function () {
     if (addressField.value !== '' && cityField.value !== '' && stateField.value !== '') {
         const requestUrl = smartyUrl + '&street=' + addressField.value + '&city=' + cityField.value + '&state=' + stateField.value;
-        createRequest(requestUrl, smartyUpdateUISuccess, smartyUpdateUIError);
+        createRequest(requestUrl, smartyUpdateUISuccess, smartyUpdateUIError, smartyInit);
     }
 }
 // createRequest(smartyUrl);
