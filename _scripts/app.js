@@ -58,10 +58,18 @@ const parksUpdateUIError = function (error) {
 //     httpRequest.send();
 // }
 
+const handleErrors = function (response) {
+    if (!response.ok) {
+        throw (response.status + ": " + response.statusText);
+    }
+    return response.json();
+}
+
 const createRequest = function (url, succeed, fail) {
     fetch(url)
-        .then((response) => response.json())
+        .then((response) => handleErrors(response))
         .then((data) => parksUpdateUISuccess(data))
+        .catch((error) => fail(error));
 }
 
 const checkCompletion = function () {
