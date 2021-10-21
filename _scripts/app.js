@@ -9,6 +9,11 @@ const smartyInit = {
     }
 };
 const parksUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=ca&api_key=F7vTdzHdHLdBxI5n00ZP3TFCVmehOdaIDlSq0aHR';
+const parksFallback = {
+    "url": "https://www.nps.gov/alca/index.htm",
+    "fullName": "Alcatraz Island",
+    "description": "Alcatraz reveals stories of American incarceration, justice, and our common humanity. This small island was once a fort, a military prison, and a maximum security federal penitentiary. In 1969, the Indians of All Tribes occupied Alcatraz for 19 months in the name of freedom and Native American civil rights. We invite you to explore Alcatraz's complex history and natural beauty.",
+};
 const addressField = document.querySelector('#address');
 const cityField = document.querySelector('#city');
 const stateField = document.querySelector('#state');
@@ -45,6 +50,11 @@ const smartyUpdateUIError = function (error) {
 
 const parksUpdateUIError = function (error) {
     console.log(error);
+    parkAnchor.textContent = parksFallback.fullName;
+    parkAnchor.setAttribute('href', parksFallback.url);
+    parkDescription.textContent = parksFallback.description;
+    parkThumb.src = "https://www.nps.gov/common/commonspot/templates/assetsCT/images/branding/logo.png";
+    parkSection.classList.remove('hidden');
 }
 
 // const responseMethod = function (httpRequest, succeed, fail) {
@@ -66,7 +76,7 @@ const parksUpdateUIError = function (error) {
 
 const handleErrors = function (response) {
     if (!response.ok) {
-        throw (response.status + ": " + response.statusText);
+        throw new Error((response.status + ": " + response.statusText));
     }
     return response.json();
 }
