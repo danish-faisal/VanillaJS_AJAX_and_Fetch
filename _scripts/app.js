@@ -1,7 +1,8 @@
 'use strict';
 
 // const smartyUrl = 'https://us-street.api.smartystreets.com/street-address?key=107882225040805386&street=86%20Frontage%20Road&city=Belmont&state=MA&candidates=10';
-const smartyUrl = 'https://us-street.api.smartystreets.com/street-address?key=107882225040805386&candidates=10';
+// const smartyUrl = 'https://us-street.api.smartystreets.com/street-address?key=107882225040805386&candidates=10';
+const smartyUrl = 'https://exp-cal-ajax-proxy.herokuapp.com/ss/street-address?candidates=10';
 const smartyInit = {
     headers: {
         'Content-type': 'application/json',
