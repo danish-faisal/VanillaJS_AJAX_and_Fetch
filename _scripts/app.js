@@ -8,7 +8,8 @@ const smartyInit = {
         Host: 'us-street.api.smartystreets.com'
     }
 };
-const parksUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=ca&api_key=F7vTdzHdHLdBxI5n00ZP3TFCVmehOdaIDlSq0aHR';
+// const parksUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=ca&api_key=F7vTdzHdHLdBxI5n00ZP3TFCVmehOdaIDlSq0aHR';
+const parksUrl = 'https://exp-cal-ajax-proxy.herokuapp.com/nps/api/v1/parks?stateCode=ca';
 const parksFallback = {
     "url": "https://www.nps.gov/alca/index.htm",
     "fullName": "Alcatraz Island",
